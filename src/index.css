@@ -1,0 +1,481 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=VT323&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  MOJO TRADER DESIGN SYSTEM
+  Windows 95/98 retro aesthetic with green/orange/white theme
+  Inspired by trading terminals and survival mechanics
+*/
+
+@layer base {
+  :root {
+    /* Core background - white/light theme */
+    --background: 0 0% 98%;
+    --foreground: 142 30% 15%;
+    
+    /* Win95 surface colors */
+    --win95-bg: 0 0% 75%;
+    --win95-bg-dark: 0 0% 50%;
+    --win95-bg-light: 0 0% 85%;
+    --win95-surface: 142 20% 12%;
+    --win95-surface-light: 142 15% 18%;
+    
+    /* Title bar - green (primary) */
+    --win95-titlebar: 150 96% 40%;
+    --win95-titlebar-active: 150 96% 35%;
+    
+    /* Accent - green */
+    --accent: 150 96% 40%;
+    --accent-foreground: 0 0% 100%;
+    --accent-muted: 150 96% 30%;
+    
+    /* Orange accent (secondary) */
+    --orange: 25 95% 55%;
+    --orange-foreground: 0 0% 100%;
+    
+    /* Semantic */
+    --card: 0 0% 100%;
+    --card-foreground: 142 30% 15%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 142 30% 15%;
+    
+    --primary: 150 96% 40%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 25 95% 55%;
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 142 10% 90%;
+    --muted-foreground: 142 20% 40%;
+    
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 142 15% 80%;
+    --input: 0 0% 95%;
+    --ring: 150 96% 40%;
+    
+    --radius: 0px;
+    
+    /* Sidebar */
+    --sidebar-background: 142 20% 12%;
+    --sidebar-foreground: 0 0% 90%;
+    --sidebar-primary: 150 96% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 142 15% 18%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 142 15% 25%;
+    --sidebar-ring: 150 96% 40%;
+    
+    /* Typography */
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-pixel: 'VT323', monospace;
+    
+    /* Win95 borders */
+    --win95-border-light: 0 0% 100%;
+    --win95-border-dark: 0 0% 20%;
+    --win95-border-mid: 0 0% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-mono);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Scanlines effect */
+.scanlines::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@layer components {
+  /* Win95 Window */
+  .win95-window {
+    @apply bg-[#c0c0c0] border-2;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #dfdfdf;
+  }
+  
+  /* Win95 Title Bar - Green (primary) */
+  .win95-titlebar {
+    @apply flex items-center justify-between px-2 py-1 text-white font-bold text-sm;
+    background: linear-gradient(90deg, hsl(var(--accent)) 0%, #027a3e 100%);
+  }
+  
+  /* Win95 Title Bar - Orange (secondary) */
+  .win95-titlebar-green {
+    @apply flex items-center justify-between px-2 py-1 text-white font-bold text-sm;
+    background: linear-gradient(90deg, hsl(var(--orange)) 0%, hsl(25 80% 45%) 100%);
+  }
+  
+  /* Win95 Control Buttons */
+  .win95-control-btn {
+    @apply w-4 h-4 flex items-center justify-center text-black text-xs font-bold;
+    background: #c0c0c0;
+    border: 1px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #dfdfdf;
+  }
+  
+  .win95-control-btn:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+    box-shadow: inset 1px 1px 0 #404040;
+  }
+  
+  /* Win95 Menu Bar */
+  .win95-menubar {
+    @apply bg-[#c0c0c0] px-1 py-0.5 border-b border-[#808080];
+  }
+  
+  .win95-menu-item {
+    @apply px-2 py-0.5 text-black hover:text-white cursor-pointer;
+  }
+  
+  .win95-menu-item:hover {
+    background-color: #039B4E;
+  }
+  
+  .win95-menu-item-active {
+    background-color: #039B4E;
+    @apply text-white;
+  }
+  
+  /* Win95 Button */
+  .win95-button {
+    @apply px-3 py-1 text-black font-bold text-xs cursor-pointer;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #dfdfdf;
+  }
+  
+  .win95-button:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+    box-shadow: inset 1px 1px 0 #404040;
+    padding-left: 0.85rem;
+    padding-top: 0.35rem;
+  }
+  
+  /* Win95 Primary Button - Green */
+  .win95-button-primary {
+    @apply px-3 py-1 font-bold text-xs cursor-pointer text-white;
+    background: hsl(var(--accent));
+    border: 2px solid;
+    border-color: #05c465 #027a3e #027a3e #05c465;
+  }
+  
+  .win95-button-primary:active {
+    border-color: #027a3e #05c465 #05c465 #027a3e;
+  }
+  
+  /* Win95 Inset (input fields) */
+  .win95-inset {
+    @apply bg-white text-black;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    box-shadow: inset 1px 1px 0 #404040;
+  }
+  
+  /* Win95 Input */
+  .win95-input {
+    @apply px-2 py-1 bg-white text-black text-xs;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    box-shadow: inset 1px 1px 0 #404040;
+  }
+  
+  .win95-input:focus {
+    outline: none;
+  }
+  
+  /* Win95 Outset (raised elements) */
+  .win95-outset {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #dfdfdf;
+  }
+  
+  /* Win95 Group Box */
+  .win95-groupbox {
+    @apply relative p-3 text-center;
+    border: 1px solid #808080;
+    background: rgba(0, 0, 0, 0.1);
+  }
+  
+  .win95-groupbox-title {
+    @apply absolute -top-2 left-2 px-1 text-xs uppercase tracking-wider;
+    background: #c0c0c0;
+    color: #404040;
+  }
+  
+  /* Win95 Progress Bar */
+  .win95-progress {
+    @apply h-4 w-full;
+    background: #ffffff;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    box-shadow: inset 1px 1px 0 #404040;
+  }
+  
+  .win95-progress-bar {
+    @apply h-full;
+    background: hsl(var(--accent));
+  }
+  
+  .win95-progress-bar-orange {
+    @apply h-full;
+    background: hsl(var(--orange));
+  }
+  
+  /* Win95 Status Bar */
+  .win95-statusbar {
+    @apply bg-[#c0c0c0] px-2 py-1 text-xs text-black;
+    border-top: 1px solid #ffffff;
+  }
+  
+  .win95-statusbar-inset {
+    @apply px-2 py-0.5;
+    border: 1px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+  }
+  
+  /* Win95 Desktop */
+  .win95-desktop {
+    @apply min-h-screen p-4;
+    background: hsl(var(--background));
+  }
+  
+  /* Win95 Icon */
+  .win95-icon {
+    @apply flex flex-col items-center cursor-pointer p-2 transition-colors;
+  }
+  
+  .win95-icon:hover {
+    background-color: rgba(3, 155, 78, 0.3);
+  }
+  
+  .win95-icon-label {
+    @apply text-white text-center mt-1;
+    text-shadow: 1px 1px 0 #000;
+  }
+  
+  /* Win95 List View */
+  .win95-listview {
+    @apply bg-white;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    box-shadow: inset 1px 1px 0 #404040;
+  }
+  
+  .win95-listview-header {
+    @apply bg-[#c0c0c0] text-black;
+    border-bottom: 1px solid #808080;
+  }
+  
+  .win95-listview-row {
+    @apply hover:text-white transition-colors;
+  }
+  
+  .win95-listview-row:hover {
+    background-color: #039B4E;
+  }
+  
+  .win95-listview-row-orange {
+    @apply hover:text-white transition-colors;
+  }
+  
+  .win95-listview-row-orange:hover {
+    background-color: hsl(25, 95%, 55%);
+  }
+  
+  /* Hover effects */
+  .hover-elevate {
+    @apply transition-transform duration-100;
+  }
+  
+  .hover-elevate:hover {
+    transform: translateY(-1px);
+  }
+  
+  .active-elevate-2:active {
+    transform: translateY(1px);
+  }
+}
+
+@layer utilities {
+  .text-win95 {
+    color: #000000;
+  }
+  
+  .bg-win95 {
+    background-color: #c0c0c0;
+  }
+  
+  .font-pixel {
+    font-family: var(--font-pixel);
+  }
+}
+
+/* Sonner toasts - Windows 95 style */
+.toaster-win95 {
+  --normal-bg: #c0c0c0;
+  --success-bg: linear-gradient(90deg, #039B4E 0%, #027a3e 100%);
+  --error-bg: linear-gradient(90deg, #ff6b4a 0%, #c03000 100%);
+  --info-bg: linear-gradient(90deg, #039B4E 0%, #027a3e 100%);
+}
+
+.toaster-win95 [data-sonner-toast] {
+  background: #c0c0c0 !important;
+  color: #000 !important;
+  border: 2px solid !important;
+  border-color: #ffffff #808080 #808080 #ffffff !important;
+  box-shadow: inset -1px -1px 0 #404040, inset 1px 1px 0 #dfdfdf !important;
+  font-family: var(--font-mono) !important;
+  padding: 0 !important;
+  min-width: 360px;
+  max-width: 520px;
+  width: max-content;
+  border-radius: 0 !important;
+}
+
+.toaster-win95 [data-sonner-toast]::before {
+  content: attr(data-type);
+  display: block;
+  text-transform: capitalize;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 6px 28px 6px 8px;
+  min-height: 20px;
+  color: #fff;
+  margin: 0;
+  border-bottom: 1px solid #808080;
+  font-family: var(--font-mono);
+}
+
+.toaster-win95 [data-sonner-toast][data-type="success"]::before {
+  background: linear-gradient(90deg, #039B4E 0%, #027a3e 100%);
+}
+
+.toaster-win95 [data-sonner-toast][data-type="error"]::before {
+  background: linear-gradient(90deg, #ff6b4a 0%, #c03000 100%);
+}
+
+.toaster-win95 [data-sonner-toast][data-type="info"]::before {
+  background: linear-gradient(90deg, #039B4E 0%, #027a3e 100%);
+}
+
+.toaster-win95 [data-sonner-toast][data-type="warning"]::before {
+  background: linear-gradient(90deg, #ffa500 0%, #c08000 100%);
+}
+
+.toaster-win95 [data-sonner-toast][data-type="default"],
+.toaster-win95 [data-sonner-toast][data-type="normal"] {
+  --before-bg: #039B4E;
+}
+.toaster-win95 [data-sonner-toast]:not([data-type="success"]):not([data-type="error"]):not([data-type="info"]):not([data-type="warning"])::before {
+  content: "Message";
+  background: linear-gradient(90deg, #039B4E 0%, #027a3e 100%);
+}
+
+.toaster-win95 [data-sonner-toast] [data-content] {
+  padding: 10px 12px 12px !important;
+  color: #000 !important;
+  font-size: 12px !important;
+  font-family: var(--font-mono) !important;
+  white-space: nowrap;
+}
+
+.toaster-win95 .win95-toast-extras {
+  padding-top: 6px;
+  border-top: 1px solid #808080;
+}
+
+.toaster-win95 [data-sonner-toast] a {
+  color: #039B4E !important;
+  text-decoration: underline;
+}
+.toaster-win95 [data-sonner-toast] a:hover {
+  color: #05c465 !important;
+}
+
+.toaster-win95 [data-sonner-toast] [data-button] {
+  background: #c0c0c0 !important;
+  color: #000 !important;
+  border: 2px solid !important;
+  border-color: #ffffff #808080 #808080 #ffffff !important;
+  box-shadow: inset -1px -1px 0 #404040 !important;
+  font-family: var(--font-mono) !important;
+  font-size: 11px !important;
+  font-weight: bold !important;
+  padding: 4px 10px !important;
+  margin: 4px 8px 8px !important;
+}
+.toaster-win95 [data-sonner-toast] [data-button]:hover {
+  background: #d0d0d0 !important;
+}
+.toaster-win95 [data-sonner-toast] [data-button]:active {
+  border-color: #808080 #ffffff #ffffff #808080 !important;
+  box-shadow: inset 1px 1px 0 #404040 !important;
+}
+
+.toaster-win95 [data-sonner-toast] [data-close-button] {
+  background: #c0c0c0 !important;
+  border: 1px solid !important;
+  border-color: #ffffff #808080 #808080 #ffffff !important;
+  color: #000 !important;
+  width: 18px !important;
+  height: 18px !important;
+  font-size: 11px !important;
+  font-weight: bold !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  top: 4px !important;
+  right: 4px !important;
+  border-radius: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.toaster-win95 [data-sonner-toast] [data-close-button]:hover {
+  background: #d0d0d0 !important;
+}
+.toaster-win95 [data-sonner-toast] [data-close-button]:active {
+  border-color: #808080 #ffffff #ffffff #808080 !important;
+  box-shadow: inset 1px 1px 0 #404040 !important;
+}
+
+.toaster-win95 [data-sonner-toast] [data-icon] {
+  margin-left: 8px;
+  margin-top: 8px;
+}
