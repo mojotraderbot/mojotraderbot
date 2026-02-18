@@ -1,6 +1,6 @@
 # Mojo Trader Bot
 
-![Mojo Trader](public/mojo-hero.png)
+<img src="public/mojo-hero.png" alt="Mojo Trader" width="280" />
 
 ## mojo-trader-bot
 
