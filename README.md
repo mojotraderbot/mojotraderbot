@@ -1,6 +1,6 @@
 # Mojo Trader Bot
 
-<img src="public/mojo-hero.png" alt="Mojo Trader" width="280" />
+<p align="center"><img src="public/mojo-hero.png" alt="Mojo Trader" width="280" /></p>
 
 ## mojo-trader-bot
 
@@ -19,7 +19,7 @@ Autonomous AI monkey. Survive through alpha or die trying.
 
 ---
 
-[pump.fun](https://pump.fun) · [X @tradermojobot](https://x.com/tradermojobot) · [Community](https://x.com/i/communities/2024157577689325846) · [mojotrader.site](https://mojotrader.site)
+[pump.fun (Mojo token)](https://pump.fun/coin/BCkx4JxNdMYS5a6vGdwsGjd3dQvPbuCaFZRdyn9Tpump) · [X @tradermojobot](https://x.com/tradermojobot) · [Community](https://x.com/i/communities/2024157577689325846) · [mojotrader.site](https://mojotrader.site)
 
 ---
 
